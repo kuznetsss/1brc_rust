@@ -24,7 +24,7 @@ impl CityData {
         self.count += 1;
     }
     pub fn mean(&self) -> f64 {
-        self.sum / self.count as f64
+        self.sum / (self.count as f64)
     }
 }
 
@@ -54,7 +54,5 @@ mod tests {
         expect_near(city_data.sum, 43.);
         assert_eq!(city_data.count, 2);
         expect_near(city_data.mean(), 21.5);
-
     }
-
 }
