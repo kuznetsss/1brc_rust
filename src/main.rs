@@ -2,7 +2,7 @@ mod city_data;
 
 use city_data::CityData;
 
-use std::collections::BTreeMap;
+use std::collections::HashMap;
 use std::fs::File;
 use std::io::{self, BufRead};
 use std::time::SystemTime;
@@ -12,7 +12,7 @@ fn main() {
     let file = File::open("./measurements.txt").unwrap();
     let mut reader = io::BufReader::new(file);
 
-    let mut cities_data = BTreeMap::<String, CityData>::new();
+    let mut cities_data = HashMap::<String, CityData>::new();
 
     let mut line = String::with_capacity(1024);
 
@@ -36,7 +36,11 @@ fn main() {
     }
     let processing_duration = SystemTime::now().duration_since(start_time).unwrap();
 
-    for (city, data) in cities_data.iter() {
+    let mut cities_sorted : Vec<_> = cities_data.keys().collect();
+    cities_sorted.sort_unstable();
+
+    for city  in cities_sorted {
+        let data = cities_data.get(city).unwrap();
         println!("{city}: {:.1}/{:.1}/{:.1}", data.min, data.mean(), data.max);
     }
 

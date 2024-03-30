@@ -2,7 +2,7 @@
 
 Simple solution for [1 billion rows challenge](https://github.com/gunnarmorling/1brc).
 
-On my mac it takes 118 seconds.
+On my mac it takes 83 seconds.
 
 ## Getting data
 
