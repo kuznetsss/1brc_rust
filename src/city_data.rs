@@ -1,3 +1,4 @@
+#[derive(Debug)]
 pub struct CityData {
     pub min: f64,
     pub max: f64,
