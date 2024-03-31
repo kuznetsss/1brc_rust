@@ -24,6 +24,14 @@ impl CityData {
         self.sum += num;
         self.count += 1;
     }
+
+    pub fn merge(&mut self, other: &CityData) {
+        self.min = self.min.min(other.min);
+        self.max = self.max.max(other.max);
+        self.sum += other.sum;
+        self.count += other.count;
+    }
+
     pub fn mean(&self) -> f64 {
         self.sum / (self.count as f64)
     }
