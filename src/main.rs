@@ -1,53 +1,27 @@
-mod city_data;
+use options::{Mode, Options};
 
-use city_data::CityData;
-
-use std::collections::HashMap;
-use std::fs::File;
-use std::io::{self, BufRead};
 use std::time::SystemTime;
 
+mod city_data;
+mod multi_thread;
+mod options;
+mod single_thread;
+
 fn main() {
+    let options = Options::parse();
+
     let start_time = SystemTime::now();
-    let file = File::open("./measurements.txt").unwrap();
-    let mut reader = io::BufReader::new(file);
-
-    let mut cities_data = HashMap::<String, CityData>::new();
-
-    let mut line = String::with_capacity(1024);
-
-    while reader.read_line(&mut line).unwrap() > 0 {
-        if line.starts_with('#') {
-            line.clear();
-            continue;
+    match options.mode {
+        Mode::SingleThread => {
+            single_thread::process_file(options.filename.as_str(), options.print_result)
         }
-        if let Some((city, temperature)) = line.split_once(';') {
-            let temperature: f64 = temperature
-                .trim()
-                .parse()
-                .map_err(|_| format!("Can't parse {temperature}"))
-                .unwrap();
-            cities_data
-                .entry(city.to_string())
-                .or_default()
-                .add(temperature);
+        Mode::Multithread => {
+            multi_thread::process_file(options.filename.as_str(), options.print_result)
         }
-        line.clear()
     }
-    let processing_duration = SystemTime::now().duration_since(start_time).unwrap();
-
-    let mut cities_sorted : Vec<_> = cities_data.keys().collect();
-    cities_sorted.sort_unstable();
-
-    for city  in cities_sorted {
-        let data = cities_data.get(city).unwrap();
-        println!("{city}: {:.1}/{:.1}/{:.1}", data.min, data.mean(), data.max);
-    }
-
-    let total_duration = SystemTime::now().duration_since(start_time).unwrap();
-    println!(
-        "Processing duration: {} ms",
-        processing_duration.as_millis()
-    );
-    println!("Total duration: {} ms", total_duration.as_millis());
+    let duration_ms = SystemTime::now()
+        .duration_since(start_time)
+        .unwrap()
+        .as_millis();
+    println!("Processing took {duration_ms} ms");
 }

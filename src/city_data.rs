@@ -1,3 +1,4 @@
+#[derive(Debug)]
 pub struct CityData {
     pub min: f64,
     pub max: f64,
@@ -23,8 +24,16 @@ impl CityData {
         self.sum += num;
         self.count += 1;
     }
+
+    pub fn merge(&mut self, other: &CityData) {
+        self.min = self.min.min(other.min);
+        self.max = self.max.max(other.max);
+        self.sum += other.sum;
+        self.count += other.count;
+    }
+
     pub fn mean(&self) -> f64 {
-        self.sum / self.count as f64
+        self.sum / (self.count as f64)
     }
 }
 
@@ -54,7 +63,5 @@ mod tests {
         expect_near(city_data.sum, 43.);
         assert_eq!(city_data.count, 2);
         expect_near(city_data.mean(), 21.5);
-
     }
-
 }
