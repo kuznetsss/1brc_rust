@@ -2,6 +2,8 @@
 
 Simple solution for [1 billion rows challenge](https://github.com/gunnarmorling/1brc).
 
+I assumed to have a limitation to use only standard library and no crates.
+
 On my mac it takes 49 seconds.
 
 ## Getting data
