@@ -1,13 +1,12 @@
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::{self, BufRead};
-use std::time::SystemTime;
 
 use crate::city_data::CityData;
 use crate::options::PrintResult;
 
 pub fn process_file(filepath: &str, print_result: PrintResult) {
-    let file = File::open("./measurements.txt").unwrap();
+    let file = File::open(filepath).unwrap();
     let mut reader = io::BufReader::new(file);
 
     let mut cities_data = HashMap::<String, CityData>::new();

@@ -4,7 +4,11 @@ Simple solution for [1 billion rows challenge](https://github.com/gunnarmorling/
 
 I assumed to have a limitation to use only standard library and no crates.
 
-On my mac it takes 49 seconds.
+The solution has multithread mode (default) and single thread modes (activated by `-s` flag). Also printing result could be disabled by `-q` flag. Because I'm not using any crates cli flags processing is very basic.
+
+On my mac single thread solution takes 85 seconds.
+Multithread solution takes 32 seconds.
+Not the best numbers but I'm trying to improve them.
 
 ## Getting data
 

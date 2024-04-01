@@ -28,6 +28,10 @@ impl Options {
                 "-s" => options.mode = Mode::SingleThread,
                 "-m" => options.mode = Mode::Multithread,
                 "-q" => options.print_result = PrintResult::No,
+                "-h" | "--help" => {
+                    print_help();
+                    exit(0);
+                },
                 s => match s.chars().next().unwrap() {
                     '-' => {
                         eprintln!("Unknown option {s}");

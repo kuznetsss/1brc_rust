@@ -7,7 +7,7 @@ use std::str::from_utf8;
 use std::thread;
 
 pub fn process_file(filepath: &str, print_result: PrintResult) {
-let content = &fs::read("./measurements.txt").unwrap();
+    let content = &fs::read(filepath).unwrap();
     const NUM_THREADS: usize = 7;
     let step = content.len() / NUM_THREADS;
 
@@ -34,16 +34,15 @@ let content = &fs::read("./measurements.txt").unwrap();
             }
         }
         result_map
-
     });
 
-    let mut _cities_sorted : Vec<_> = result.keys().collect();
+    let mut _cities_sorted: Vec<_> = result.keys().collect();
     _cities_sorted.sort_unstable();
 
     if matches!(print_result, PrintResult::Yes) {
-    for (city, data) in  result {
-        println!("{city}: {:.1}/{:.1}/{:.1}", data.min, data.mean(), data.max);
-    }
+        for (city, data) in result {
+            println!("{city}: {:.1}/{:.1}/{:.1}", data.min, data.mean(), data.max);
+        }
     }
 }
 
