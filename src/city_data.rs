@@ -63,4 +63,16 @@ mod tests {
         assert_eq!(city_data.count, 2);
         expect_near(city_data.mean(), 21.5);
     }
+
+    #[test]
+    fn merge_test() {
+        let mut city_data = CityData{min: 1.0, max: 2.1, sum: 3.3, count: 4};
+        let other_city_data = CityData{min: 2.0, max: 3.2, sum: 7.4, count: 2};
+        city_data.merge(&other_city_data);
+
+        expect_near(city_data.min, 1.0);
+        expect_near(city_data.max, 3.2);
+        expect_near(city_data.sum, 10.7);
+        assert_eq!(city_data.count, 6);
+    }
 }

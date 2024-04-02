@@ -8,6 +8,11 @@ The solution has multithread mode (default, 8 threads) and single thread modes (
 
 On my mac single thread solution takes 80 seconds, multithread solution takes 12 seconds (input file is 14 GB).
 
+## What could be improved
+
+- Map file with data into memory (`memmap2` crate is required)
+- Faster hashmap (`hashbrown` crate is required)
+
 ## Getting data
 
 File `measurements.txt` is required to be in the repo to measure performance.
@@ -27,3 +32,7 @@ mv ./measurements.txt <1brc_rust path>
 
 ```
 
+## Thanks
+
+- @timclicks for the [video](https://www.youtube.com/watch?v=-1VGwmFKKf8) showing the most simple solution
+- @RagnarGrootKoerkamp for the [article](https://curiouscoding.nl/posts/1brc) ([webarchive](https://web.archive.org/web/20240324180312/https://curiouscoding.nl/posts/1brc/)) showing probably all the possible optimisations
