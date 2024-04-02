@@ -34,5 +34,5 @@ mv ./measurements.txt <1brc_rust path>
 
 ## Thanks
 
-- @timclicks for the [video](https://www.youtube.com/watch?v=-1VGwmFKKf8) showing the most simple solution
-- @RagnarGrootKoerkamp for the [article](https://curiouscoding.nl/posts/1brc) ([webarchive](https://web.archive.org/web/20240324180312/https://curiouscoding.nl/posts/1brc/)) showing probably all the possible optimisations
+- [@timClicks](https://github.com/timClicks) for the [video](https://www.youtube.com/watch?v=-1VGwmFKKf8) showing the most simple solution
+- [@RagnarGrootKoerkamp](https://github.com/RagnarGrootKoerkamp) for the [article](https://curiouscoding.nl/posts/1brc) ([webarchive](https://web.archive.org/web/20240324180312/https://curiouscoding.nl/posts/1brc/)) showing probably all the possible optimisations
