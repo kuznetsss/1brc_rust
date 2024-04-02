@@ -6,9 +6,7 @@ I assumed to have a limitation to use only standard library and no crates.
 
 The solution has multithread mode (default, 8 threads) and single thread modes (activated by `-s` flag). Also printing result could be disabled by `-q` flag. Because I'm not using any crates cli flags processing is very basic.
 
-On my mac single thread solution takes 85 seconds.
-Multithread solution takes 32 seconds.
-Not the best numbers but I'm trying to improve them.
+On my mac single thread solution takes 80 seconds, multithread solution takes 12 seconds (input file is 14 GB).
 
 ## Getting data
 

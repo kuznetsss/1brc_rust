@@ -8,7 +8,7 @@ use std::thread;
 
 pub fn process_file(filepath: &str, print_result: PrintResult) {
     let content = &fs::read(filepath).unwrap();
-    const NUM_THREADS: usize = 7;
+    const NUM_THREADS: usize = 8;
     let step = content.len() / NUM_THREADS;
 
     let result = thread::scope(|s| {
@@ -78,11 +78,8 @@ fn to_end_of_line(mut ind: usize, content: &[u8]) -> usize {
 }
 
 fn process_line<'a>(line: &'a str, cities_data: &mut HashMap<&'a str, CityData>) {
-    let (city, temperature) = line
-        .split_once(';')
-        .ok_or(format!("Error on {line}"))
-        .unwrap();
-    let temperature: f64 = temperature.trim_end().parse().unwrap();
+    let (city, temperature) = line.split_once(';').unwrap();
+    let temperature: f64 = temperature.parse().unwrap();
     cities_data.entry(city).or_default().add(temperature);
 }
 
@@ -106,6 +103,6 @@ mod tests {
         process_line(line, &mut cities_data);
 
         let data = cities_data.get("asd").unwrap();
-        assert!((&data.min - 42.1).abs() <= 1e-9);
+        assert!((&data.min - 42.1).abs() <= f64::EPSILON);
     }
 }

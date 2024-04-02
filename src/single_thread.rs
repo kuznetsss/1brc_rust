@@ -20,9 +20,8 @@ pub fn process_file(filepath: &str, print_result: PrintResult) {
         }
         if let Some((city, temperature)) = line.split_once(';') {
             let temperature: f64 = temperature
-                .trim()
+                .trim_end()
                 .parse()
-                .map_err(|_| format!("Can't parse {temperature}"))
                 .unwrap();
             cities_data
                 .entry(city.to_string())

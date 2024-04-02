@@ -42,8 +42,7 @@ mod tests {
     use super::CityData;
 
     fn expect_near(a: f64, b: f64) {
-        const PRECISION: f64 = 1e-9;
-        assert!((a - b).abs() <= PRECISION, "{a} is different from {b}");
+        assert!((a - b).abs() <= f64::EPSILON, "{a} is different from {b}");
     }
 
     #[test]
