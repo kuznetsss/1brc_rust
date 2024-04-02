@@ -36,11 +36,12 @@ pub fn process_file(filepath: &str, print_result: PrintResult) {
         result_map
     });
 
-    let mut _cities_sorted: Vec<_> = result.keys().collect();
-    _cities_sorted.sort_unstable();
+    let mut cities_sorted: Vec<_> = result.keys().collect();
+    cities_sorted.sort_unstable();
 
     if matches!(print_result, PrintResult::Yes) {
-        for (city, data) in result {
+        for city in cities_sorted {
+            let data = result.get(city).unwrap();
             println!("{city}: {:.1}/{:.1}/{:.1}", data.min, data.mean(), data.max);
         }
     }
